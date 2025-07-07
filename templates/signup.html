@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Signup Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Signup</h2>
+        <form method="POST">
+            <input type="text" name="name" placeholder="Full Name" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <div class="password-container">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <span class="toggle-password" onmouseover="showPassword()" onmouseout="hidePassword()">👁️</span>
+            </div>
+
+        
+            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div><br>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <!-- Load Google reCAPTCHA -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    </div>
+    <script>
+    function showPassword() {
+        document.getElementById('password').type = 'text';
+    }
+
+    function hidePassword() {
+        document.getElementById('password').type = 'password';
+    }
+    </script>
+    
+</body>
+</html>
