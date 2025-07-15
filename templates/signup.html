@@ -6,18 +6,25 @@
 <body>
     <div class="form-container">
         <h2>Signup</h2>
-        <form method="POST">
+        <form method="POST" onsubmit="return validatePasswords()">
             <input type="text" name="name" placeholder="Full Name" required><br>
             <input type="email" name="email" placeholder="Email" required><br>
             <div class="password-container">
-                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="password" name="password" id="password" placeholder="Create New Password" required>
                 <span class="toggle-password" onmouseover="showPassword()" onmouseout="hidePassword()">👁️</span>
             </div>
-
+            
+            <div class="confirm-wrapper" style="position: relative;flex-direction: column;">
+                <input type="password" id="confirm_password" placeholder="Confirm Password" required>
+                <span id="tickMark"></span>
+            </div>
         
             <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div><br>
-
-            <button type="submit">Register</button>
+            <div style="margin-bottom: 12px;">
+                <button type="submit">Register</button></div>
+            <div style="margin-bottom: 12px;">
+                <p>Already have an account?</p>
+                <a href="{{ url_for('login') }}">Login</a>
         </form>
 
         <!-- Load Google reCAPTCHA -->
@@ -32,6 +39,31 @@
         document.getElementById('password').type = 'password';
     }
     </script>
-    
+    <script>
+        document.getElementById("confirm_password").addEventListener("input", function () {
+        const pwd = document.getElementById("password").value;
+        const cpwd = this.value;
+        const tick = document.getElementById("tickMark");
+
+        if (pwd && cpwd && pwd === cpwd) {
+            tick.textContent = "✓";
+            tick.style.display = "inline";
+        } else {
+            tick.textContent = "❌";
+             tick.style.color = "red";
+        } 
+    });
+
+    // Final check before submitting form
+    function validatePasswords() {
+        const pwd = document.getElementById("password").value;
+        const cpwd = document.getElementById("confirm_password").value;
+        if (pwd !== cpwd) {
+            alert("Passwords do not match!");
+            return false;
+        }
+        return true;
+    }
+    </script>
 </body>
 </html>

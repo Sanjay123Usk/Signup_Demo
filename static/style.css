@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f0f0f0;
+    background: radial-gradient(black, transparent);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,6 +33,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+
 
 .password-container{
     position: relative;
@@ -70,3 +71,4 @@ button {
 .h2 {
     position: fixed;
 }
+
