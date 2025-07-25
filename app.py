@@ -48,13 +48,13 @@ def signup():
                   (name, email, password))
         conn.commit()
         conn.close()
-        return redirect('/success')
+        return redirect('/starter_page')
 
     return render_template('signup.html')
 
-@app.route('/success')
-def success():
-    return render_template('success.html')
+@app.route('/starter_page')
+def starter_page():
+    return render_template('starter_page.html')
 
 
 @app.route('/users')
@@ -83,7 +83,7 @@ def login():
         if user:
             session['user_id'] = user[0]
             session['user_name'] = user[1]
-            return redirect('/dashboard')
+            return redirect('/starter_page')
         else:
             flash('Invalid email or password')
             return redirect('/login')
